@@ -1,0 +1,250 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+.glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(128, 0, 255, 0.4) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0.7;
+  animation: pulse 6s infinite alternate;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.9); opacity: 0.5; }
+  100% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.screen {
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.text {
+  font-size: 28px;
+  line-height: 1.4;
+  max-width: 90%;
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s forwards;
+}
+
+.textzero {
+  font-size:24px;
+  line-height: 1.2;
+}
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.btn {
+  padding: 16px;
+  border-radius: 16px;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s;
+  -webkit-appearance: none;
+  width: 100%;
+  transform-origin: center;
+}
+
+.btn-yes {
+  background: linear-gradient(135deg, #8a2be2, #a040ff);
+  color: white;
+  box-shadow: 0 0 20px rgba(138, 43, 226, 0.6);
+}
+
+.btn-no {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ccc;
+  backdrop-filter: blur(10px);
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+.hidden {
+  display: none !important;
+}
+
+#rickScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#rickVideo {
+  width: 90vw;
+  max-width: 500px;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  outline: none;
+}
+
+#jokeScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+#jokeScreen div {
+  font-size: 28px;
+  color: #ff6ec7;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 16px 32px;
+  border-radius: 16px;
+  opacity: 0;
+  animation: fadeInJoke 1s forwards;
+}
+
+@keyframes fadeInJoke {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#finalScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.celebration-text {
+  font-size: 32px;
+  font-weight: 800;
+  color: #ff6ec7;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: bounceIn 1s forwards;
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.1); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.photo-container {
+  position: relative;
+  width: 80vw;
+  max-width: 320px;
+  aspect-ratio: 1 / 1;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(160, 64, 255, 0.5);
+  margin: 20px auto;
+}
+
+.photo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  animation: fadeInPhoto 1.5s forwards 0.3s;
+}
+
+@keyframes fadeInPhoto {
+  to { opacity: 1; }
+}
+
+.love-message {
+  color: #e0b0ff;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-top: 16px;
+  max-width: 90%;
+  opacity: 0;
+  animation: fadeInUp 1.5s forwards 1.8s;
+}
+
+.heart-bg {
+  position: absolute;
+  font-size: 20px;
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: -1;
+  animation: pulseHeart 4s infinite alternate;
+}
+
+@keyframes pulseHeart {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  100% { transform: scale(1.2); opacity: 0.9; }
+}
+
+.telegram-link {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #a040ff;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
