@@ -7,15 +7,17 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Аудио -->
   <audio id="finalAudio" src="mariedlife.mp3" preload="auto"></audio>
 
   <div class="glow"></div>
 
+  <!-- НУЛЕВОЙ ЭКРАН -->
   <div id="screen0" class="screen">
-    <div class="text textzero" style="animation-delay: 0.2s;">
-      Чтобы всё заработало <br>как надо —
-      включи звук <br>на телефоне и убедись,<br>
-      что не в режиме <br>“Без звука” 😏 <br>(или подключи наушники)
+    <div class="text" style="animation-delay: 0.2s;">
+      Чтобы всё заработало как надо —<br>
+      включи звук на телефоне и убедись,<br>
+      что не в режиме “Без звука” 😏
     </div>
     <div class="btn-container">
       <button class="btn btn-yes" onclick="goToScreen1()">Я всё сделала ❤️</button>
@@ -63,26 +65,31 @@
     </div>
   </div>
 
+  <!-- РИКРОЛЛ -->
   <div id="rickScreen" class="hidden">
     <video id="rickVideo" playsinline>
       <source src="Voicy_rickroll.mp4" type="video/mp4">
     </video>
   </div>
 
+  <!-- ШУТКА -->
   <div id="jokeScreen" class="hidden">
     <div>Ладно, шучу))</div>
   </div>
 
+  <!-- ФИНАЛ -->
   <div id="finalScreen" class="screen hidden">
     <div class="celebration-text">ЮПИИ ЙЕЕЕЕЕЕЕЕЙ!!</div>
-    <div class="photo-container">
-      <img src="photo.jpg" alt="Мы">
-    </div>
+    
+    <!-- КРОССФЕЙД ФОТО -->
+    <div class="photo-crossfade" id="photoCrossfade"></div>
+    
     <div class="love-message">
       Зима прекрасна — потому что есть весна.<br>
       Я тебя очень люблю, моя чесночная булочка.<br>
       С тобой февраль ощущается как летняя пора.
     </div>
+    
     <a href="https://t.me/pyokovlad" class="telegram-link" target="_blank">
       💬 Написать любимке (то есть мне)
     </a>

@@ -1,5 +1,22 @@
+// script.js
 let yesScale = 1.0;
 let noScale = 1.0;
+
+const photos = [
+  'photo.jpg',
+  'photo1.jpg',
+  'photo2.jpg',
+  'photo3.jpg',
+  'photo4.jpg',
+  'photo5.jpg',
+  'photo6.jpg',
+  'photo7.jpg',
+  'photo8.jpg',
+  'photo9.jpg',
+  'photo10.jpg',
+  'photo11.jpg',
+  'photo12.jpg',
+];
 
 function updateButtonSizes() {
   const clampedNoScale = Math.max(noScale, 0.6);
@@ -91,6 +108,7 @@ function showFinal() {
   audio.play().catch(e => console.log("Финальная музыка не проигралась:", e));
 
   createBackgroundHearts();
+  startCrossfade();
 }
 
 function createBackgroundHearts() {
@@ -115,4 +133,40 @@ function createBackgroundHearts() {
 
     document.body.appendChild(heart);
   }
+}
+
+// === ПЛАВНЫЙ КРОССФЕЙД БЕЗ ПУСТОТЫ ===
+function startCrossfade() {
+  const container = document.getElementById('photoCrossfade');
+  
+  if (photos.length === 0) return;
+
+  // Создаём все фото сразу
+  photos.forEach((src, index) => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.classList.add('crossfade-img');
+    if (index === 0) img.classList.add('active');
+    container.appendChild(img);
+  });
+
+  if (photos.length <= 1) return;
+
+  let currentIndex = 0;
+
+  setInterval(() => {
+    const currentImg = container.children[currentIndex];
+    const nextIndex = (currentIndex + 1) % photos.length;
+    const nextImg = container.children[nextIndex];
+
+    // Делаем следующее фото видимым (оно появится под текущим)
+    nextImg.classList.add('active');
+
+    // Через короткую задержку убираем текущее
+    setTimeout(() => {
+      currentImg.classList.remove('active');
+      currentIndex = nextIndex;
+    }, 50);
+
+  }, 6000); // каждые 6 секунд
 }
